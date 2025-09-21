@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* @layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+} */
+
+@layer components {
+  .nav-active {
+    @apply pb-2 border-b-2 border-gray-900 transition-colors duration-300;
+  }
+
+  .nav-link {
+    @apply pb-2 border-b-2 border-transparent transition-colors hover:text-gray-600  duration-300 ease-in-out;
+  }
+}
