@@ -12,6 +12,8 @@ import { StarRating } from 'react-flexible-star-rating';
 import toast from 'react-hot-toast';
 import { useCartContext } from '../../app/context/cartContext';
 import { addToCart, getCart } from '../../app/actions/cart.action';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation.js';
 
 interface IProductDetailsProps {
     productDetails: IProductDetails
@@ -19,12 +21,18 @@ interface IProductDetailsProps {
 
 const ProductDetails = ({ productDetails }: IProductDetailsProps) => {
     const { setCartProducts } = useCartContext();
+    const session = useSession();
+    const router = useRouter();
 
     const handleAddToCart = async () => {
-        await addToCart(productDetails._id);
-        const products = await getCart();
-        setCartProducts(products?.data.products);
-        toast.success("Product Added Successfully");
+        if (!session.data) {
+            router.push('/login')
+        } else {
+            await addToCart(productDetails._id);
+            const products = await getCart();
+            setCartProducts(products?.data.products);
+            toast.success("Product Added Successfully");
+        }
     }
     return (
         <div className='max-w-[80%] m-auto flex justify-between items-start py-10 my-10'>

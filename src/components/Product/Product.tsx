@@ -15,6 +15,8 @@ import { useCartContext } from '../../app/context/cartContext';
 import { addToWishlist } from '../../app/actions/wishlist.action';
 import { useWishlist } from '../../app/context/wishlistProvider';
 import toast from 'react-hot-toast';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation.js';
 
 interface IProductProps {
     product: IProduct;
@@ -23,19 +25,29 @@ interface IProductProps {
 const Product = ({ product }: IProductProps) => {
     const { products, setProducts } = useWishlist();
     const { setCartProducts } = useCartContext();
+    const session = useSession();
+    const router = useRouter();
 
     const handleAddToCart = async () => {
-        await addToCart(product._id);
-        const products = await getCart();
-        setCartProducts(products?.data.products);
-        toast.success("Product Added Successfully");
+        if (!session.data) {
+            router.push('/login')
+        } else {
+            await addToCart(product._id);
+            const products = await getCart();
+            setCartProducts(products?.data.products);
+            toast.success("Product Added Successfully");
+        }
     }
 
     const handleAddToWishlist = async () => {
-        await addToWishlist(product._id);
-        const newWishlist = [...products, product];
-        setProducts(newWishlist);
-        toast.success("Product Added Successfully");
+        if (!session.data) {
+            router.push('/login')
+        } else {
+            await addToWishlist(product._id);
+            const newWishlist = [...products, product];
+            setProducts(newWishlist);
+            toast.success("Product Added Successfully");
+        }
     }
 
     return (

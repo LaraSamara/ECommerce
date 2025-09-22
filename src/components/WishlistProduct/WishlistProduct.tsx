@@ -14,6 +14,8 @@ import { Badge } from '../ui/badge';
 import { addToCart, getCart } from '../../app/actions/cart.action';
 import { useCartContext } from '../../app/context/cartContext';
 import toast from 'react-hot-toast';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation.js';
 
 interface IProductProps {
     product: IProduct;
@@ -22,12 +24,18 @@ interface IProductProps {
 
 const WishlistProduct = ({ handleRemoveProduct, product, }: IProductProps) => {
     const { setCartProducts } = useCartContext();
+    const session = useSession();
+    const router = useRouter();
 
-    const handleAddToWishlist = async () => {
-        await addToCart(product._id);
-        const products = await getCart();
-        setCartProducts(products?.data.products);
-        toast.success("Product Added Successfully");
+    const handleAddToCart = async () => {
+        if (!session.data) {
+            router.push('/login')
+        } else {
+            await addToCart(product._id);
+            const products = await getCart();
+            setCartProducts(products?.data.products);
+            toast.success("Product Added Successfully");
+        }
     }
 
     return (
@@ -42,7 +50,7 @@ const WishlistProduct = ({ handleRemoveProduct, product, }: IProductProps) => {
                 </Button>
                 <button
                     className='p-1 bg-gray-100 hover:bg-gray-300 transition-color duration-500 cursor-pointer'
-                    onClick={handleAddToWishlist}>
+                    onClick={handleAddToCart}>
                     <ShoppingCart />
 
                 </button>
