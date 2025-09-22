@@ -7,7 +7,7 @@ const Page = async () => {
     const categories = await getCategories();
 
     return (
-        <div className='grid grid-cols-4 gap-4 my-10 max-w-[85%] m-auto'>
+        <div className='grid gap-4 my-10 max-w-[85%] m-auto lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1'>
             {categories?.data?.map((category: ICategory) =>
                 <div key={category._id} className='flex flex-col justify-center items-center'>
                     <Category category={category} />

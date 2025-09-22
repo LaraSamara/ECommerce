@@ -32,7 +32,7 @@ const Products = () => {
             <div className="max-w-[50%] m-auto my-12">
                 <Input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)} placeholder="Type to Search..." />
             </div>
-            <div className="grid grid-cols-4 gap-2 max-w-[85%] m-auto">
+            <div className="grid gap-2 max-w-[85%] m-auto lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1">
                 {products.map((product: IProduct) =>
                     <Product
                         key={product.id}

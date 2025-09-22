@@ -22,7 +22,7 @@ const Page = () => {
         <div className="bg-gray-200">
             <div className="overflow-hidden rounded-md max-w-[80%] m-auto min-h-[87vh]">
                 {products?.length > 0 ? (
-                    <div className="grid grid-cols-4 justify-center gap-4 bg-gray-200 py-10">
+                    <div className="grid justify-center gap-4 bg-gray-200 py-10 lg:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1">
                         {products?.map((product: IProduct) => (
                             <WishlistProduct
                                 key={product._id}

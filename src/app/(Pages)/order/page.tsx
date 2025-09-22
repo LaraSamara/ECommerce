@@ -37,7 +37,6 @@ const Page = () => {
             }
         } else {
             const response = await createCardOrder(cartId, data);
-            console.log("🚀 ~ onSubmit ~ response:", response)
             if (response?.status === 200) {
                 window.location.href = response.data.url;
             }
