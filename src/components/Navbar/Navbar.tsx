@@ -13,6 +13,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { useCartContext } from '../../app/context/cartContext';
 import { useWishlist } from '../../app/context/wishlistProvider';
 import { Badge } from '../ui/badge';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
     const pathname = usePathname();
@@ -69,7 +70,10 @@ const Navbar = () => {
                             <NavigationMenuItem>
                                 <Button
                                     className='shadow-none cursor-pointer'
-                                    onClick={() => signOut({ callbackUrl: "/signin" })}
+                                    onClick={() => {
+                                        signOut({ callbackUrl: "/signin" })
+                                        toast.success("Success...")
+                                    }}
                                 >
                                     <LogOut className="text-gray-700" />
                                 </Button>
