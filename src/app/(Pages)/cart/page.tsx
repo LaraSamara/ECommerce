@@ -17,7 +17,7 @@ import { Badge } from "@/components/ui/badge"
 import { useRouter } from 'next/navigation.js';
 import toast from 'react-hot-toast';
 
-const page = () => {
+const Page = () => {
     const { cartProducts, setCartProducts, totalCartPrice } = useCartContext();
     const router = useRouter();
 
@@ -120,4 +120,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Page;

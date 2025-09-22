@@ -9,7 +9,7 @@ export const options: NextAuthOptions = {
                 email: { label: "Email", type: "email" },
                 password: { label: "Password", type: "password" }
             },
-            async authorize(credentials, req) {
+            async authorize(credentials) {
                 const res = await fetch("https://ecommerce.routemisr.com/api/v1/auth/signin", {
                     method: 'POST',
                     body: JSON.stringify({

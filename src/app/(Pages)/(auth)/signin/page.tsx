@@ -1,8 +1,7 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Input } from '../../../../components/ui/input';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +14,7 @@ type Inputs = {
     password: string
 }
 
-const page = () => {
+const Page = () => {
     const route = useRouter();
     const schema = z
         .object({
@@ -40,6 +39,7 @@ const page = () => {
                 redirect: false,
             });
             if (response?.ok) {
+                toast.success("Welcome....")
                 route.push("/");
             }
         }
@@ -79,4 +79,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Page;

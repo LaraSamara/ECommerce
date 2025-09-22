@@ -17,7 +17,7 @@ export interface IProductDetails {
 	brand: ICategory ;
 	ratingsAverage: number;
 	ratingsQuantity: number;
-	reviews: any[];
+	reviews: string[];
 	createdAt: string;
 	updatedAt: string;
 	__v: number;

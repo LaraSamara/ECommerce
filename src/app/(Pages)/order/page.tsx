@@ -13,24 +13,21 @@ import {
 } from "@/components/ui/radio-group"
 import toast from 'react-hot-toast';
 
-interface Inputs extends IOrder {
-}
-
 enum PAYMENT_TYPE {
     CASH = "cash",
     CARD = "card",
 }
 
-const page = () => {
+const Page = () => {
     const [paymentType, setPaymentType] = useState<PAYMENT_TYPE>();
     const router = useRouter();
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<Inputs>();
+    } = useForm<IOrder>();
     const { cartId, setCartProducts } = useCartContext();
-    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const onSubmit: SubmitHandler<IOrder> = async (data) => {
         if (paymentType == PAYMENT_TYPE.CASH) {
             const response = await createCashOrder(cartId, data);
             if (response?.status === 201) {
@@ -99,4 +96,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Page;

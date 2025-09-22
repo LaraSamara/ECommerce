@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Input } from '../../../../components/ui/input';
 import axios from 'axios';
@@ -7,14 +7,12 @@ import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { signIn } from 'next-auth/react';
-import Link from 'next/link.js';
 
 type Inputs = {
     email: string
 }
 
-const page = () => {
+const Page = () => {
     const route = useRouter();
     const schema = z
         .object({
@@ -65,4 +63,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Page;

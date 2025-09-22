@@ -3,7 +3,7 @@ import getCategories from '../../actions/category.action';
 import Category from '../../../components/Category/Category';
 import { ICategory } from '../../types/category.type';
 
-const page = async () => {
+const Page = async () => {
     const categories = await getCategories();
 
     return (
@@ -18,4 +18,4 @@ const page = async () => {
     )
 }
 
-export default page;
+export default Page;

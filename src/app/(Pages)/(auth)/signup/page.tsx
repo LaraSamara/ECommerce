@@ -16,7 +16,7 @@ type Inputs = {
     phone: string
 }
 
-const page = () => {
+const Page = () => {
     const [error, setError] = useState("");
     const route = useRouter();
     const schema = z
@@ -124,4 +124,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Page;
