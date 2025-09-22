@@ -25,7 +25,7 @@ const Navbar = () => {
 
     return (
         <>
-            <NavigationMenu className='max-w-full mx-auto p-5 flex justify-between shadow-sm shadow-gray-400'>
+            <NavigationMenu className='max-w-full md:flex-row flex-col  mx-auto p-5 flex gap-8 justify-between shadow-sm shadow-gray-400'>
                 <NavigationMenuList className='max-w-7xl m-auto'>
                     <NavigationMenuItem className='text-2xl tracking-tighter font-semibold'>E-Commerce</NavigationMenuItem>
                 </NavigationMenuList>
