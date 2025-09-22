@@ -26,7 +26,7 @@ const ProductDetails = ({ productDetails }: IProductDetailsProps) => {
 
     const handleAddToCart = async () => {
         if (!session.data) {
-            router.push('/login')
+            router.push('/signin')
         } else {
             await addToCart(productDetails._id);
             const products = await getCart();

@@ -29,7 +29,7 @@ const WishlistProduct = ({ handleRemoveProduct, product, }: IProductProps) => {
 
     const handleAddToCart = async () => {
         if (!session.data) {
-            router.push('/login')
+            router.push('/signin')
         } else {
             await addToCart(product._id);
             const products = await getCart();

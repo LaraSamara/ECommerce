@@ -30,7 +30,7 @@ const Product = ({ product }: IProductProps) => {
 
     const handleAddToCart = async () => {
         if (!session.data) {
-            router.push('/login')
+            router.push('/signin')
         } else {
             await addToCart(product._id);
             const products = await getCart();
@@ -41,7 +41,7 @@ const Product = ({ product }: IProductProps) => {
 
     const handleAddToWishlist = async () => {
         if (!session.data) {
-            router.push('/login')
+            router.push('/signin')
         } else {
             await addToWishlist(product._id);
             const newWishlist = [...products, product];
