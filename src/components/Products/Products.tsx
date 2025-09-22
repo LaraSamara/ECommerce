@@ -16,8 +16,10 @@ const Products = () => {
     }
 
     useEffect(() => {
-        const newProducts = AllProducts.filter((p: IProduct) =>
-            p.title.includes(search) || p.description.includes(search));
+        const newProducts = AllProducts.filter((p: IProduct) => {
+            return p.title.toLowerCase().includes(search.toLowerCase()) ||
+                p.description.toLowerCase().includes(search.toLowerCase())
+        })
         setProducts(newProducts);
     }, [search, AllProducts]);
 
