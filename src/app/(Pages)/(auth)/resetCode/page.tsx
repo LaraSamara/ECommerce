@@ -43,7 +43,7 @@ const Page = () => {
 
     return (
         <div className='max-w-[50%] m-auto my-10'>
-            <h1 className='text-start mb-6 text-3xl font-bold tracking-tighter'>Sign In</h1>
+            <h1 className='text-start mb-6 text-3xl font-bold tracking-tighter'>Reset Code</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="my-3">
                     <Input
