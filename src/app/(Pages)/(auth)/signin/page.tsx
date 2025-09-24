@@ -8,8 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { signIn } from 'next-auth/react';
 import Link from 'next/link.js';
-import { useCartContext } from '../../../context/cartContext';
-import { useWishlist } from '../../../context/wishlistProvider';
 
 type Inputs = {
     email: string
