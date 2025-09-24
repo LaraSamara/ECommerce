@@ -42,8 +42,6 @@ const Page = () => {
             });
             if (response?.ok) {
                 toast.success("Welcome....");
-                const { cartProducts } = useCartContext();
-                const { products } = useWishlist();
                 route.push("/");
             }
         }
