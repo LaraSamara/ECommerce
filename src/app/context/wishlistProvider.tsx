@@ -2,6 +2,7 @@
 import { getWishlist } from "../actions/wishlist.action";
 import { createContext, useContext, useEffect, useState } from "react";
 import { IProduct } from "../types/product.type";
+import { useSession } from "next-auth/react";
 
 interface IWishlistContextType {
     products: IProduct[];
@@ -12,6 +13,7 @@ export const wishListContext = createContext<IWishlistContextType>({ products: [
 
 export const WishlistProvider = ({ children }: { children: React.ReactNode }) => {
     const [products, setProducts] = useState<IProduct[]>([]);
+    const { data: session } = useSession();
 
     const handleWishlist = async () => {
         const response = await getWishlist();
@@ -20,7 +22,7 @@ export const WishlistProvider = ({ children }: { children: React.ReactNode }) =>
 
     useEffect(() => {
         handleWishlist();
-    }, []);
+    }, [session]);
 
     return (
         <wishListContext.Provider value={{ products, setProducts }}>
