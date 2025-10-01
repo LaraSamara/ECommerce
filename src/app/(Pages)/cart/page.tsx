@@ -35,8 +35,9 @@ const Page = () => {
     }
 
     const clearUserCart = async () => {
+        if (cartProducts.length == 0) return;
         const response = await clearCart();
-        if(response?.status === 200){
+        if (response?.status === 200) {
             setCartProducts([]);
             toast.success("Cart Cleared Successfully");
         }
