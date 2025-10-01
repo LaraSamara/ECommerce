@@ -12,10 +12,11 @@ import { useCartContext } from '../../context/cartContext';
 import { ICartProduct } from '../../types/cart.type';
 import Image from 'next/image.js';
 import { Button } from '../../../components/ui/button';
-import { getCart, removeCartProduct, updateCartQuantity } from '../../actions/cart.action';
+import { clearCart, getCart, removeCartProduct, updateCartQuantity } from '../../actions/cart.action';
 import { Badge } from "@/components/ui/badge"
 import { useRouter } from 'next/navigation.js';
 import toast from 'react-hot-toast';
+import { BrushCleaning } from 'lucide-react';
 
 const Page = () => {
     const { cartProducts, setCartProducts, totalCartPrice } = useCartContext();
@@ -33,8 +34,20 @@ const Page = () => {
         toast.success("Product Remove Successfully");
     }
 
+    const clearUserCart = async () => {
+        const response = await clearCart();
+        if(response?.status === 200){
+            setCartProducts([]);
+            toast.success("Cart Cleared Successfully");
+        }
+    }
+
     return (
         <div className="overflow-hidden rounded-md max-w-[80%] m-auto my-10">
+            <Button className="flex items-center gap-2 ms-auto mb-5 cursor-pointer" onClick={clearUserCart}>
+                <span>Clear</span>
+                <BrushCleaning />
+            </Button>
             <Table>
                 <TableHeader>
                     <TableRow>

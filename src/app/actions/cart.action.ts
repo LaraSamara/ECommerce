@@ -2,7 +2,6 @@
 import axios from "axios";
 import { getToken } from "../../lib/token.utils";
 
-
 async function getCart() {
     try {
         const token = await getToken();
@@ -99,4 +98,28 @@ async function removeCartProduct(id: string) {
     }
 }
 
-export { getCart, addToCart, updateCartQuantity, removeCartProduct };
+async function clearCart() {
+    try {
+        const token = await getToken();
+        const response = await axios.delete(`https://ecommerce.routemisr.com/api/v1/cart`,
+            {
+                headers: { token: token as string },
+            }
+        );
+        return {
+            data: response.data.data,
+            message: response.data.message,
+            status: response.status,
+        }
+    } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+            return {
+                message: error?.response?.data?.message || 'Something happened !!',
+                status: error?.response?.status,
+                data: [],
+            }
+        }
+    }
+}
+
+export { getCart, addToCart, updateCartQuantity, removeCartProduct, clearCart };

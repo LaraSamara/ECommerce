@@ -12,7 +12,7 @@ import { StarRating } from 'react-flexible-star-rating';
 import Link from 'next/link.js';
 import { addToCart, getCart } from '../../app/actions/cart.action';
 import { useCartContext } from '../../app/context/cartContext';
-import { addToWishlist } from '../../app/actions/wishlist.action';
+import { addToWishlist, removeWishlistProduct } from '../../app/actions/wishlist.action';
 import { useWishlist } from '../../app/context/wishlistProvider';
 import toast from 'react-hot-toast';
 import { useSession } from 'next-auth/react';
@@ -43,6 +43,16 @@ const Product = ({ product }: IProductProps) => {
         if (!session.data) {
             router.push('/signin')
         } else {
+            const exists = products.find(p => p._id == product._id);
+            if (exists) {
+                const res = await removeWishlistProduct(product._id);
+                const newProducts = products.filter(p => p._id !== product._id);
+                setProducts(newProducts);
+                if (res?.status == 200) {
+                    toast.success("Product Deleted Successfully");
+                }
+                return;
+            }
             await addToWishlist(product._id);
             const newWishlist = [...products, product];
             setProducts(newWishlist);
